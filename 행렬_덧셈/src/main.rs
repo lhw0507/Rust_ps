@@ -8,7 +8,8 @@ fn main() {
         .map(|x| x.parse::<i32>().unwrap())
         .collect::<Vec<i32>>();
 
-    let mut matrix = Vec::new().resize(matrix_size[0] as usize, Vec::new().resize(matrix_size[1] as usize, 0));
+    let mut matrix = vec![];
+    matrix.resize(matrix_size[0] as usize, vec![]);
 
     //최초 입력
     for i in 0..matrix_size[0] {
@@ -22,7 +23,8 @@ fn main() {
         matrix[i as usize] = row;
     }
 
-    //더하기
+    let mut matrix2 = vec![];
+    matrix2.resize(matrix_size[0] as usize, vec![]);
     for i in 0..matrix_size[0] {
         let mut buffer = String::new();
         io::stdin().read_line(&mut buffer).unwrap();
@@ -31,13 +33,13 @@ fn main() {
             .map(|x| x.parse::<i32>().unwrap())
             .collect::<Vec<i32>>();
 
-        matrix[i as usize] += row;
+        matrix2[i as usize] = row;
     }
 
     //출력
     for i in 0..matrix_size[0] {
         for j in 0..matrix_size[1] {
-            print!("{} ", matrix[i as usize][j as usize]);
+            print!("{} ", matrix[i as usize][j as usize] + matrix2[i as usize][j as usize]);
         }
         println!();
     }
